@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="/webjars/font-awesome/5.13.0/css/all.min.css">
+<link ref="stylesheet" th:src="@{/css/style.css}">
+</head>
+<body>
+
+	<div th:replace="fragments/header::header"></div>
+
+	<div class="container">
+		<a th:href="@{/users/create}" class="btn btn-outline-primary">Add new</a>
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">Balance</th>
+					<th scope="col">Phone Number</th>
+					<th scope="col">Profile Image</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user: ${listOfUsers}">
+					<td th:text="${user.id}">1</td>
+					<td th:text="${user.name}">Mark</td>
+					<td th:text="${user.email}">otto@mail.com</td>
+					<td th:text="${user.balance}">0</td>
+					<td th:text="${user.phoneNumber}">0879462</td>
+					<td th:text="${user.profileImage}">noimage</td>
+					<td>
+						<a th:href="@{/users/edit}" class="btn btn-warning">Edit</a>
+						<a th:href="@{/users/delete}" class="btn btn-danger">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div th:replace="fragments/footer::footer"></div>
+</body>
+</html>
