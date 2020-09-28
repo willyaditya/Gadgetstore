@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.gadgetstore.dto.AddressForm;
 import com.gadgetstore.dto.UserForm;
+import com.gadgetstore.entity.Address;
 import com.gadgetstore.entity.User;
+import com.gadgetstore.services.AddressService;
 import com.gadgetstore.services.UserService;
 
 @Controller
@@ -18,6 +21,8 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private AddressService addressService;
 	
 	@GetMapping
 	public String index(Model model) {
@@ -75,5 +80,66 @@ public class UserController {
 	public String destroy(@PathVariable("id") int id) {
 		userService.delete(id);
 		return "redirect:/users";
+	}
+	
+	@GetMapping(value = "/{id}/address")
+	public String addressList(@PathVariable("id") int id, Model model) {
+		model.addAttribute("user", userService.findById(id).get());
+		model.addAttribute("listOfAddress", addressService.findAllByUserId(id));
+		return "address/index";
+	}
+	
+	@GetMapping("/{id}/address/create")
+	public String addAddress(@PathVariable("id") int id, Model model) {
+		AddressForm form = new AddressForm();
+		form.setUserId(id);
+		model.addAttribute("addressForm", form);
+		return "address/create";
+	}
+	
+	@PostMapping("/address/save")
+	public String saveAddress(AddressForm addressForm, Model model) {
+		Address address = new Address();
+		address.setRecipientName(addressForm.getRecipientName());
+		address.setAddress(addressForm.getAddress());
+		address.setPostalCode(addressForm.getPostalCode());
+		address.setCityId(addressForm.getCityId());
+		address.setDefault(false);
+		User user = userService.findById(addressForm.getUserId()).get();
+		address.setUser(user);
+		addressService.save(address);
+		return "redirect:/users/address";
+	}
+	
+	@GetMapping(value = "/address/edit/{id}/")
+	public String editAddress(@PathVariable("id") int id, Model model) {
+		Address address = addressService.findById(id).get();
+		AddressForm form = new AddressForm();
+		form.setId(address.getId());
+		form.setRecipientName(address.getRecipientName());
+		form.setAddress(address.getAddress());
+		form.setCityId(address.getCityId());
+		form.setPostalCode(address.getPostalCode());
+		model.addAttribute("userForm", form);
+		return "address/edit";
+	}
+	
+	@PostMapping("/address/update")
+	public String updateAddress(UserForm userForm, Model model) {
+		User user = new User();
+		user.setId(userForm.getId());
+		user.setName(userForm.getName());
+		user.setEmail(userForm.getEmail());
+		user.setBalance(userForm.getBalance());
+		user.setPhoneNumber(userForm.getPhoneNumber());
+		user.setProfileImage(userForm.getProfileImage());
+		userService.updateUser(user);
+		return "redirect:/users/address";
+	}
+	
+	@GetMapping(value = "/address/delete/{id}")
+	public String destroyAddress(@PathVariable("id") int id) {
+		addressService.delete(id);
+		return "redirect:/users/address";
 	}
 }

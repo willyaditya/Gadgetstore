@@ -10,5 +10,4 @@ public interface AddressRepo extends PagingAndSortingRepository<Address, Integer
 
 	public List<Address> findAllByUserId(int userId);
 	
-	
 }

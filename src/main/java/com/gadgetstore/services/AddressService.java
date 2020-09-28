@@ -17,7 +17,7 @@ public class AddressService {
 	@Autowired
 	private AddressRepo addressRepo;
 	
-	public Iterable<Address> findByUserId(int userId) {
+	public Iterable<Address> findAllByUserId(int userId) {
 		return addressRepo.findAllByUserId(userId);
 	}
 	
@@ -29,7 +29,7 @@ public class AddressService {
 		return addressRepo.save(address);
 	}
 	
-	public boolean destroy(int id) {
+	public boolean delete(int id) {
 		addressRepo.deleteById(id);
 		return true;
 	}
