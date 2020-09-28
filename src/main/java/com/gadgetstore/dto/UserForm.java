@@ -1,12 +1,21 @@
 package com.gadgetstore.dto;
 
 public class UserForm {
+	private int id;
 	private String name;
 	private String email;
 	private String password;
 	private double balance;
 	private String phoneNumber;
 	private String profileImage;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;

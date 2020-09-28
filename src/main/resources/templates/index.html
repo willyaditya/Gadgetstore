@@ -34,8 +34,8 @@
 					<td th:text="${user.phoneNumber}">0879462</td>
 					<td th:text="${user.profileImage}">noimage</td>
 					<td>
-						<a th:href="@{/users/edit}" class="btn btn-warning">Edit</a>
-						<a th:href="@{/users/delete}" class="btn btn-danger">Delete</a>
+						<a th:href="@{/users/edit/{id}/(id=${user.id})}" class="btn btn-warning">Edit</a>
+						<a th:href="@{/users/delete/{id}/(id=${user.id})}" class="btn btn-danger">Delete</a>
 					</td>
 				</tr>
 			</tbody>

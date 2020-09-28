@@ -41,8 +41,22 @@ public class UserService {
 		return userRepo.save(user);
 	}
 	
-	public boolean destroy(int id) {
+	public boolean delete(int id) {
 		userRepo.deleteById(id);
 		return true;
+	}
+	
+	public User update(User user) {
+		return userRepo.save(user);
+	}
+	
+	public void updateUser(User user) {
+//	    User userTemp = userRepo.findById(user.getId()).get();
+//	    userTemp.setName(user.getName());
+//	    userTemp.setEmail(user.getEmail());
+//	    userTemp.setBalance(user.getBalance());
+//	    userTemp.setPhoneNumber(user.getPhoneNumber());
+//	    userTemp.setProfileImage(user.getProfileImage());
+	    userRepo.save(user);
 	}
 }
