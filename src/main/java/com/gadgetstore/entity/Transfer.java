@@ -10,19 +10,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "topups")
-public class Topup {
+@Table(name = "transfers")
+public class Transfer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(length = 12)
-	private double total;
-	@Column(length = 2, nullable = false)
-	private byte status;
 	@ManyToOne
-	@JoinColumn(name = "user_id", referencedColumnName = "id")
-	private User user;
+	@JoinColumn(name = "sender_id", referencedColumnName = "id")
+	private User sender;
+	@ManyToOne
+	@JoinColumn(name = "recipient_id", referencedColumnName = "id")
+	private User recipient;
+	@Column(nullable = false)
+	private double total;
+	@Column(nullable = false)
+	private byte status;
 
 	public int getId() {
 		return id;
@@ -30,6 +33,22 @@ public class Topup {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public User getSender() {
+		return sender;
+	}
+
+	public void setSender(User sender) {
+		this.sender = sender;
+	}
+
+	public User getRecipient() {
+		return recipient;
+	}
+
+	public void setRecipient(User recipient) {
+		this.recipient = recipient;
 	}
 
 	public double getTotal() {
@@ -46,14 +65,6 @@ public class Topup {
 
 	public void setStatus(byte status) {
 		this.status = status;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 }

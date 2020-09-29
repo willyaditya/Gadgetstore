@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.gadgetstore.entity.Address;
 import com.gadgetstore.repo.AddressRepo;
 
-@Service
+@Service("addressService")
 @Transactional
 public class AddressService {
 	
@@ -26,6 +26,10 @@ public class AddressService {
 	}
 	
 	public Address save(Address address) {
+		return addressRepo.save(address);
+	}
+	
+	public Address update(Address address) {
 		return addressRepo.save(address);
 	}
 	

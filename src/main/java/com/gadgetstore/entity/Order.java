@@ -10,50 +10,55 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "topups")
-public class Topup {
-
+@Table(name = "orders")
+public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(length = 12)
-	private double total;
-	@Column(length = 2, nullable = false)
-	private byte status;
 	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
-
+	
+//	private Date orderDate;
+	
+	@Column(nullable = false)
+	private String courier;
+	@Column(nullable = false)
+	private byte status;
+	
+	@ManyToOne
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	private Address address;
+	
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public double getTotal() {
-		return total;
-	}
-
-	public void setTotal(double total) {
-		this.total = total;
-	}
-
-	public byte getStatus() {
-		return status;
-	}
-
-	public void setStatus(byte status) {
-		this.status = status;
-	}
-
 	public User getUser() {
 		return user;
 	}
-
 	public void setUser(User user) {
 		this.user = user;
 	}
-
+	public byte getStatus() {
+		return status;
+	}
+	public void setStatus(byte status) {
+		this.status = status;
+	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	public String getCourier() {
+		return courier;
+	}
+	public void setCourier(String courier) {
+		this.courier = courier;
+	}
+	
 }

@@ -30,7 +30,7 @@ public class UserService {
 	}
 	
 	public User findByEmail(String email) {
-		return userRepo.findAllByEmail(email);
+		return userRepo.findByEmail(email);
 	}
 	
 	public Optional<User> findById(int id) {
@@ -48,15 +48,5 @@ public class UserService {
 	
 	public User update(User user) {
 		return userRepo.save(user);
-	}
-	
-	public void updateUser(User user) {
-//	    User userTemp = userRepo.findById(user.getId()).get();
-//	    userTemp.setName(user.getName());
-//	    userTemp.setEmail(user.getEmail());
-//	    userTemp.setBalance(user.getBalance());
-//	    userTemp.setPhoneNumber(user.getPhoneNumber());
-//	    userTemp.setProfileImage(user.getProfileImage());
-	    userRepo.save(user);
 	}
 }

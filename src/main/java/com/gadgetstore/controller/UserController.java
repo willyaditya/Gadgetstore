@@ -64,7 +64,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/update")
-	public String update(UserForm userForm, Model model) {
+	public String update(UserForm userForm) {
 		User user = new User();
 		user.setId(userForm.getId());
 		user.setName(userForm.getName());
@@ -72,7 +72,7 @@ public class UserController {
 		user.setBalance(userForm.getBalance());
 		user.setPhoneNumber(userForm.getPhoneNumber());
 		user.setProfileImage(userForm.getProfileImage());
-		userService.updateUser(user);
+		userService.update(user);
 		return "redirect:/users";
 	}
 	
@@ -125,15 +125,10 @@ public class UserController {
 	}
 	
 	@PostMapping("/address/update")
-	public String updateAddress(UserForm userForm, Model model) {
-		User user = new User();
-		user.setId(userForm.getId());
-		user.setName(userForm.getName());
-		user.setEmail(userForm.getEmail());
-		user.setBalance(userForm.getBalance());
-		user.setPhoneNumber(userForm.getPhoneNumber());
-		user.setProfileImage(userForm.getProfileImage());
-		userService.updateUser(user);
+	public String updateAddress(AddressForm addressForm, Model model) {
+		Address address = new Address();
+		
+		addressService.update(address);
 		return "redirect:/users/address";
 	}
 	

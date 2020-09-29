@@ -6,6 +6,6 @@ import com.gadgetstore.entity.User;
 
 public interface UserRepo extends PagingAndSortingRepository<User, Integer>{
 	
-	public User findAllByEmail(String email);
+	public User findByEmail(String email);
 	
 }
