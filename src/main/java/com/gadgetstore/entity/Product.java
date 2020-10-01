@@ -25,8 +25,11 @@ public class Product {
 	@Column(length = 500, nullable = false)
 	private String description;
 	@ManyToOne
-	@JoinColumn(name = "product_id", referencedColumnName = "id")
+	@JoinColumn(name = "category_id", referencedColumnName = "id")
 	private Category category;
+	@ManyToOne
+	@JoinColumn(name = "brand_id", referencedColumnName = "id")
+	private Brand brand;
 	@Column(length = 30)
 	private String color;
 	@Column(length = 160)

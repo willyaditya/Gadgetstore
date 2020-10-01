@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Banner {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
+	private int id;
 	@Column(nullable = false)
 	private byte category;
 	@Column(length = 255, nullable = false)
@@ -20,11 +20,11 @@ public class Banner {
 	@Column(nullable = false)
 	private byte status;
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
