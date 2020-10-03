@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head th:include="fragments/admin/header::head"></head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <nav th:replace="fragments/admin/header::navbar"></nav>
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <aside th:replace="fragments/admin/header::sidebar"></aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Update Brand</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Brand</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+
+                    <!-- BAGIAN INI AKAN MENG-HANDLE FORM INPUT NEW CATEGORY  -->
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Edit Brand</h4>
+                            </div>
+                            <div class="card-body">
+
+                                <form th:object="${brandForm}" action="@{/brand/update}" method="post">
+                                    <div class="form-group">
+                                        <label for="name">Brand Title</label>
+                                        <input type="text" name="name" class="form-control" th:field="*{name}" required>
+                                    </div>
+                                    <input type="hidden" name="id" th:field="*{id}">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- BAGIAN INI AKAN MENG-HANDLE FORM INPUT NEW CATEGORY  -->
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+
+        <!-- /.content-wrapper -->
+        <footer th:replace="fragments/admin/header::sidebar"></footer>
+
+    </div>
+    <!-- ./wrapper -->
+
+    <div th:include="fragments/admin/footer::script"></div>
+
+</body>
+
+</html>

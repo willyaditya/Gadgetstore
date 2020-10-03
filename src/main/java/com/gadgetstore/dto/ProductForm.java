@@ -6,9 +6,10 @@ public class ProductForm {
 	private double price;
 	private String description;
 	private int categoryId;
+	private int brandId;
 	private String color;
 	private String slug;
-	private byte weight;
+	private double weight;
 
 	public int getId() {
 		return id;
@@ -50,6 +51,14 @@ public class ProductForm {
 		this.categoryId = categoryId;
 	}
 
+	public int getBrandId() {
+		return brandId;
+	}
+
+	public void setBrandId(int brandId) {
+		this.brandId = brandId;
+	}
+
 	public String getColor() {
 		return color;
 	}
@@ -66,11 +75,11 @@ public class ProductForm {
 		this.slug = slug;
 	}
 
-	public byte getWeight() {
+	public double getWeight() {
 		return weight;
 	}
 
-	public void setWeight(byte weight) {
+	public void setWeight(double weight) {
 		this.weight = weight;
 	}
 

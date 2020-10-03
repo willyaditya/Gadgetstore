@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head th:include="fragments/admin/header::head"></head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+  <div class="wrapper">
+
+    <!-- Navbar -->
+    <nav th:replace="fragments/admin/header::navbar"></nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside th:replace="fragments/admin/header::sidebar"></aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Brand Management</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Brand</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+
+          <!-- BAGIAN INI AKAN MENG-HANDLE FORM INPUT NEW CATEGORY  -->
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">New Brand</h4>
+              </div>
+              <div class="card-body">
+
+                <form th:object="${brandForm}" th:action="@{/brand/save}" method="post">
+                  <div class="form-group">
+                    <label for="name">Brand Title</label>
+                    <input type="text" name="name" class="form-control" th:field="*{name}" required>
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+          <!-- BAGIAN INI AKAN MENG-HANDLE FORM INPUT NEW CATEGORY  -->
+
+          <!-- BAGIAN INI AKAN MENG-HANDLE TABLE LIST CATEGORY  -->
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Brand List</h4>
+              </div>
+              <div class="card-body">
+
+                <div class="table-responsive">
+                  <table class="table table-hover table-bordered">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Brand</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- LOOPING DATA KATEGORI SESUAI JUMLAH DATA YANG ADA DI VARIABLE $CATEGORY -->
+                      <tr th:each="brand: ${listOfBrand}">
+                        <td th:text="${brand.id}">1</td>
+                        <td><strong th:text="${brand.name}">Brand</strong></td>
+                        <td>
+                          <a href="" class="btn btn-warning btn-sm">Edit</a>
+                          <a href="" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.table-responsive -->
+              </div>
+            </div>
+          </div>
+          <!-- BAGIAN INI AKAN MENG-HANDLE TABLE LIST CATEGORY  -->
+        </div>
+      </section>
+      <!-- /.content -->
+    </div>
+
+    <!-- /.content-wrapper -->
+    <footer th:replace="fragments/admin/header::sidebar"></footer>
+
+  </div>
+  <!-- ./wrapper -->
+
+  <script>
+    $(document).ready(function () {
+      $(function () {
+        $('#dataTable').DataTable({
+          "responsive": true,
+          "autoWidth": false,
+          "ordering": false,
+        })
+      })
+    });
+  </script>
+
+  <div th:include="fragments/admin/footer::script"></div>
+
+</body>
+
+</html>

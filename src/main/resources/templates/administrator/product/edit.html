@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head th:include="fragments/admin/header::head"></head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+  <div class="wrapper">
+
+    <!-- Navbar -->
+    <nav th:replace="fragments/admin/header::navbar"></nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside th:replace="fragments/admin/header::sidebar"></aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Update Product</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#"></a>Products</li>
+                <li class="breadcrumb-item active">Add Product</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <a href="" class="btn btn-default text-dark">
+                    <i class="fas fa-arrow-left"></i>
+                    Back
+                  </a>
+                </h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form th:object="${productForm}" th:action="@{/product/update}" method="post">
+                <div class="card-body">
+                  <h4>Update Product</h4>
+                  
+                  <input type="hidden" th:field="*{id}">
+
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="name">Product Name</label>
+                      <input type="text" class="form-control" name="name" id="name" th:field="*{name}">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="price">Price</label>
+                      <input type="number" class="form-control" name="price" id="price" th:field="*{price}">
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label for="color">Color</label>
+                      <input type="text" class="form-control" name="color" id="color" th:field="*{color}">
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="weight">Weight</label>
+                      <input type="number" class="form-control" name="weight" id="weight" th:field="*{weight}">
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="slug">Slug</label>
+                      <input type="text" class="form-control" name="slug" id="slug" th:field="*{slug}">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="3"
+                      th:field="*{description}"></textarea>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="categoryId">Category</label>
+                      <select th:field="*{categoryId}" class="form-control select2" id="categoryId" name="categoryId" required>
+                        <option th:each="category : ${listOfCategory}" th:value="${category.id}" th:text="${category.name}">
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label for="brandId">Brand</label>
+                      <select th:field="*{brandId}" class="form-control select2" id="brandId" name="brandId" required>
+                        <option th:each="brand : ${listOfBrand}" th:value="${brand.id}" th:text="${brand.name}">
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </section>
+      <!-- /.content -->
+    </div>
+
+    <!-- /.content-wrapper -->
+    <footer th:replace="fragments/admin/header::sidebar"></footer>
+
+  </div>
+  <!-- ./wrapper -->
+
+  <div th:include="fragments/admin/footer::script"></div>
+
+  <script>
+    $(document).ready(function () {
+      //Initialize Select2 Elements
+      $('.select2').select2()
+    });
+  </script>
+
+  <div th:include="fragments/admin/footer::adminltescript"></div>
+
+</body>
+
+</html>

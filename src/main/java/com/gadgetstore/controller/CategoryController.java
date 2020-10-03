@@ -1,6 +1,5 @@
 package com.gadgetstore.controller;
 
-import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,14 +22,17 @@ public class CategoryController {
 	@GetMapping
 	public String index(Model model) {
 		model.addAttribute("listOfCategory", categoryService.findAll());
-		return "category/index";
+		model.addAttribute("categoryForm", new CategoryForm());
+		return "administrator/category/index";
 	}
 	
+	/*
 	@GetMapping("/create")
 	public String create(Model model) {
 		model.addAttribute("categoryForm", new CategoryForm());
-		return "category/create";
+		return "administrator/category/create";
 	}
+	*/
 	
 	@PostMapping("/save")
 	public String save(CategoryForm categoryForm, Model model) {
@@ -49,7 +51,7 @@ public class CategoryController {
 		form.setName(category.getName());
 		form.setSlug(category.getSlug());
 		model.addAttribute("categoryForm", form);
-		return "category/edit";
+		return "administrator/category/edit";
 	}
 	
 	@PostMapping("/update")

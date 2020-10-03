@@ -1,9 +1,8 @@
 package com.gadgetstore.dto;
 
-public class CategoryForm {
+public class BrandForm {
 	private int id;
 	private String name;
-	private String slug;
 
 	public int getId() {
 		return id;
@@ -19,14 +18,6 @@ public class CategoryForm {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getSlug() {
-		return slug;
-	}
-
-	public void setSlug(String slug) {
-		this.slug = slug;
 	}
 
 }

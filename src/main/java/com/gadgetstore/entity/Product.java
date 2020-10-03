@@ -79,6 +79,14 @@ public class Product {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+	
+	public Brand getBrand() {
+		return brand;
+	}
+
+	public void setBrand(Brand brand) {
+		this.brand = brand;
+	}
 
 	public String getColor() {
 		return color;
