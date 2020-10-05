@@ -10,7 +10,7 @@ public class HomeController {
 	
 	@GetMapping
 	public String index() {
-		return "dashboard/index";
+		return "ecommerce/home/index";
 	}
 	
 	@GetMapping("/hello")

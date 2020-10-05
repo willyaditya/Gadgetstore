@@ -8,11 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.gadgetstore.dto.CategoryForm;
 import com.gadgetstore.dto.ProductForm;
-import com.gadgetstore.entity.Category;
 import com.gadgetstore.entity.Product;
-import com.gadgetstore.repo.ProductRepo;
 import com.gadgetstore.services.BrandService;
 import com.gadgetstore.services.CategoryService;
 import com.gadgetstore.services.ProductService;
